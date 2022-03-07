@@ -43,7 +43,7 @@ def create_scatter_plot_event(
 ):
     df = get_df_for_event(event_id)
     fig, ax, pitch = create_vertical_pitch(half, v_size, h_size)
-    sc = pitch.scatter(
+    sc = pitch.scatter(  # noqa: F841
         df["start_location_x"],
         df["start_location_y"],
         s=df["statsbomb_xg"] * 500 + 100,
@@ -54,9 +54,9 @@ def create_scatter_plot_event(
 
 
 def create_scatter_plot_for_one_team(
-    team_df: pd.DataFrame, color: str, team_label, pitch, ax,marker = None
+    team_df: pd.DataFrame, color: str, team_label, pitch, ax, marker=None
 ):
-    sc = pitch.scatter(
+    sc = pitch.scatter(  # noqa: F841
         team_df["start_location_x"],
         team_df["start_location_y"],
         s=team_df["statsbomb_xg"] * 500 + 100,
@@ -64,8 +64,8 @@ def create_scatter_plot_for_one_team(
         hatch="//",
         ax=ax,
         label=team_label,
-        marker=marker
-    )
+        marker=marker,
+    )  # noqa: F841
 
 
 def create_scatter_plot_for_two_teams(
@@ -80,11 +80,16 @@ def create_scatter_plot_for_two_teams(
     label_1: str,
     label_2: str,
 ):
-    fig, ax, pitch = create_vertical_pitch(half, v_size, h_size)
+    fig, ax, pitch = create_vertical_pitch(half, v_size, h_size)  # noqa: F841
     team_1, team_2 = split_df(event_id, team_1, team_2)
-    team_1_plot = create_scatter_plot_for_one_team(team_1, color_1, label_1, pitch, ax)
-    team_2_plot = create_scatter_plot_for_one_team(team_2, color_2, label_2, pitch, ax)
+    team_1_plot = create_scatter_plot_for_one_team(  # noqa: F841
+        team_1, color_1, label_1, pitch, ax
+    )
+    team_2_plot = create_scatter_plot_for_one_team(  # noqa: F841
+        team_2, color_2, label_2, pitch, ax
+    )
     ax.legend()
+
 
 def create_scatter_plot_with_goals_for_two_teams(
     event_id: str,
@@ -101,16 +106,24 @@ def create_scatter_plot_with_goals_for_two_teams(
     fig, ax, pitch = create_vertical_pitch(half, v_size, h_size)
     team_1, team_2 = split_df(event_id, team_1, team_2)
     team_1_g_df, team_1_ng_df = split_df_goals(team_1)
-    team_2_g_df, team_2_ng_df= split_df_goals(team_2)
-    team_1_plot_g = create_scatter_plot_for_one_team(team_1_g_df, color_1, label_1, pitch, ax, "football")
-    team_2_plot_g = create_scatter_plot_for_one_team(team_2_g_df, color_2, label_2, pitch, ax, "football")
-    team_1_plot_ng = create_scatter_plot_for_one_team(team_1_ng_df, color_1, label_1, pitch, ax, "s")
-    team_2_plot_ng = create_scatter_plot_for_one_team(team_2_ng_df, color_2, label_2, pitch, ax, "s")
+    team_2_g_df, team_2_ng_df = split_df_goals(team_2)
+    team_1_plot_g = create_scatter_plot_for_one_team(  # noqa: F841
+        team_1_g_df, color_1, label_1, pitch, ax, "football"
+    )
+    team_2_plot_g = create_scatter_plot_for_one_team(  # noqa: F841
+        team_2_g_df, color_2, label_2, pitch, ax, "football"
+    )
+    team_1_plot_ng = create_scatter_plot_for_one_team(  # noqa: F841
+        team_1_ng_df, color_1, label_1, pitch, ax, "s"
+    )
+    team_2_plot_ng = create_scatter_plot_for_one_team(  # noqa: F841
+        team_2_ng_df, color_2, label_2, pitch, ax, "s"
+    )  # noqa: F841
 
     ax.legend(labelspacing=2)
 
-    
-def create_scatter_plot_with_goals(    
+
+def create_scatter_plot_with_goals(
     event_id: str,
     half: bool,
     v_size: int,
@@ -119,12 +132,16 @@ def create_scatter_plot_with_goals(
     team_1: str,
     team_2: str,
     label_1: str,
-    ):
+):
 
     fig, ax, pitch = create_vertical_pitch(half, v_size, h_size)
     team_1, _ = split_df(event_id, team_1, team_2)
     team_1_g_df, team_1_ng_df = split_df_goals(team_1)
-    team_1_plot_ng = create_scatter_plot_for_one_team(team_1_ng_df, color_1, label_1, pitch, ax, "s")
-    team_1_plot_g = create_scatter_plot_for_one_team(team_1_g_df, color_1, label_1, pitch, ax, "football")
+    team_1_plot_ng = create_scatter_plot_for_one_team(  # noqa: F841
+        team_1_ng_df, color_1, label_1, pitch, ax, "s"
+    )
+    team_1_plot_g = create_scatter_plot_for_one_team(  # noqa: F841
+        team_1_g_df, color_1, label_1, pitch, ax, "football"
+    )  # noqa: F841
 
     ax.legend(labelspacing=2)
