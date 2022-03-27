@@ -1,2 +1,3 @@
 # Shikabala
-Just random utilty functions for football/soccer analytics 
+
+A mono repo for soccer/football anayltics exploration.
