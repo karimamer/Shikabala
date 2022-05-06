@@ -6,6 +6,7 @@ def readfromhtml(filepath):
     x = readfromhtml(
         "https://fbref.com/en/comps/Big5/shooting/players/Big-5-European-Leagues-Stats"
     )
+    main idead is to use df = pd.read_html(filepath)[0] 
     """
 
     df = pd.read_html(filepath)[0]
